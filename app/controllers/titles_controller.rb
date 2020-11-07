@@ -4,7 +4,6 @@ class TitlesController < ApplicationController
   end
   
   def create
-    logger.debug(params)
     @title = Title.new(title_params)
     if @title.save
       flash[:success] = "お題登録完了"
@@ -14,8 +13,16 @@ class TitlesController < ApplicationController
     end
   end
   
-  def show
+  def destroy
     @title = Title.find(params[:id])
+    @title.destroy
+    flash[:success] = "お題削除完了"
+    redirect_to(root_url)
+  end
+  
+  def index
+    @titles = Title.all
+    @micropost = Micropost.new
   end
   
   private

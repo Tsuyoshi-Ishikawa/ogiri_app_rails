@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_112726) do
+ActiveRecord::Schema.define(version: 2020_11_07_005845) do
+
+  create_table "microposts", force: :cascade do |t|
+    t.text "content"
+    t.integer "title_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["title_id", "created_at"], name: "index_microposts_on_title_id_and_created_at"
+    t.index ["title_id"], name: "index_microposts_on_title_id"
+  end
 
   create_table "titles", force: :cascade do |t|
     t.string "content"
@@ -18,4 +27,5 @@ ActiveRecord::Schema.define(version: 2020_11_06_112726) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "microposts", "titles"
 end

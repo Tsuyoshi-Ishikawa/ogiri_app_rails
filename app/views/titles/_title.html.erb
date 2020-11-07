@@ -1,0 +1,19 @@
+<li id="title-<%= title.id %>">
+  <span class="title"><%= title.content %></span>
+  <%= link_to "delete", title, method: :delete,
+                                       data: { confirm: "削除して良いですか?" }, class: 'link' %>
+  <% @microposts = title.microposts %>
+  <ul>
+    <%= render @microposts %>
+  </ul>
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @micropost do |f| %>
+    
+      <%= f.hidden_field :id, :value => title.id %>
+      <%= f.text_field :content, class: 'form-control' %>
+
+      <%= f.submit "登録", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</li>
+<br>
