@@ -21,7 +21,7 @@ class TitlesController < ApplicationController
   end
   
   def index
-    @titles = Title.all
+    @titles = Title.all.order(id: "DESC")
     @micropost = Micropost.new
   end
   
