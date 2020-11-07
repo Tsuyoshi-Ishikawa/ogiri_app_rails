@@ -7,7 +7,7 @@ class TitlesController < ApplicationController
     @title = Title.new(title_params)
     if @title.save
       flash[:success] = "お題登録完了"
-      redirect_to @title
+      redirect_to root_path
     else
       render 'new'
     end
